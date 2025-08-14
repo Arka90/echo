@@ -18,6 +18,12 @@ export const add = mutation({
     if (identity === null) {
       throw new Error("Not authenticated");
     }
+    const orgId = identity.ogrId as string;
+
+    if (!orgId) {
+      throw new Error("Organization ID is required");
+    }
+
     const user = await ctx.db.insert("users", { name });
     return user;
   },
