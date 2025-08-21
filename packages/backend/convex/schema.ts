@@ -4,6 +4,21 @@ import { v } from "convex/values";
 export default defineSchema({
   // Define your schema here
 
+  conversations: defineTable({
+    threadId: v.string(),
+    organizationId: v.string(),
+    contactSessionId: v.id("contactSessions"),
+    status: v.union(
+      v.literal("unresolved"),
+      v.literal("escalated"),
+      v.literal("resolved")
+    ),
+  })
+    .index("by_organizationId", ["organizationId"])
+    .index("by_threadId", ["threadId"])
+    .index("by_contactSessionId", ["contactSessionId"])
+    .index("by_status_and_organizationId", ["status", "organizationId"]),
+
   contactSessions: defineTable({
     name: v.string(),
     email: v.string(),
