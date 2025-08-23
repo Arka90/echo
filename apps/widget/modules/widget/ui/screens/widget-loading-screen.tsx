@@ -89,6 +89,9 @@ export const WidgetLoadingScreen = ({
         if (result.valid) {
           setSessionValid(result.valid);
           setStep("done");
+        } else {
+          setSessionValid(false);
+          setStep("done");
         }
       })
       .catch(() => {
