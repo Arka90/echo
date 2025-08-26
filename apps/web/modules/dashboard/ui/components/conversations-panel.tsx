@@ -118,7 +118,7 @@ export const ConverSationPanel = () => {
                 >
                   <div
                     className={cn(
-                      "-translate-y-1/2 absolute left-0 h-[64%] w-1 rounded-r-full bg-neutral-300 opacity-0 transition-opacity",
+                      "absolute left-0 top-1/2 h-2/3 w-1 -translate-y-1/2 rounded-r-full bg-neutral-300 opacity-0 transition-opacity",
                       pathName === `/conversations/${conversation._id}` &&
                         "opacity-100"
                     )}
