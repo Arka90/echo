@@ -16,7 +16,7 @@ import {
 import { useAction, useQuery } from "convex/react";
 import { api } from "@workspace/backend/_generated/api";
 import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll";
-import { InfiniteScrollTrigger } from "../components/infinite-scroll-trigger";
+import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
 import {
   AIConversation,
   AIConversationContent,

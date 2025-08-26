@@ -16,7 +16,7 @@ import { usePaginatedQuery } from "convex/react";
 import { api } from "@workspace/backend/_generated/api";
 import { ConversationStatusIcon } from "@workspace/ui/components/conversation-status-icon";
 import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll";
-import { InfiniteScrollTrigger } from "../components/infinite-scroll-trigger";
+import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
 
 export const WidgetInboxScreen = () => {
   const setScreen = useSetAtom(screenAtom);

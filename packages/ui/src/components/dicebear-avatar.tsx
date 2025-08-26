@@ -58,8 +58,8 @@ export const DicebearAvatar = ({
             badgeClassName
           )}
           style={{
-            width: size,
-            height: size,
+            width: badgeSize,
+            height: badgeSize,
             transform: "translate(15%, 15%)",
           }}
         >
