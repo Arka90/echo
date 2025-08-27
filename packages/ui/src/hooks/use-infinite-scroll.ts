@@ -11,7 +11,7 @@ export const useInfiniteScroll = ({
   status,
   loadMore,
   loadSize = 10,
-  observerEnabled = false,
+  observerEnabled = true,
 }: UseInfiniteScrollProps) => {
   const topElementRef = useRef<HTMLDivElement>(null);
 
