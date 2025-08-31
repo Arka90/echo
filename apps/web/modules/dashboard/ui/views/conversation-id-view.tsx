@@ -59,6 +59,7 @@ export const ConversationIdView = ({
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
     try {
       await createMessage({
         conversationId,
@@ -67,6 +68,8 @@ export const ConversationIdView = ({
       form.reset();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -85,6 +88,7 @@ export const ConversationIdView = ({
 
   const updateStatus = useMutation(api.private.conversations.updateStatus);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleToggleStatus = async () => {
     if (!conversation) return;
@@ -180,16 +184,11 @@ export const ConversationIdView = ({
               name="message"
               control={form.control}
               disabled={
-                conversation?.status === "resolved" ||
-                enhancing ||
-                form.formState.isSubmitting
+                conversation?.status === "resolved" || enhancing || isSubmitting
               }
               render={({ field }) => (
                 <AIInputTextarea
-                  disabled={
-                    conversation?.status === "resolved" ||
-                    form.formState.isSubmitting
-                  }
+                  disabled={conversation?.status === "resolved" || isSubmitting}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();
@@ -224,7 +223,7 @@ export const ConversationIdView = ({
               <AIInputSubmit
                 disabled={
                   conversation?.status === "resolved" ||
-                  form.formState.isSubmitting ||
+                  isSubmitting ||
                   !form.formState.isValid ||
                   enhancing
                 }
