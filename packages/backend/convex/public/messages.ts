@@ -3,9 +3,11 @@ import { action, query } from "../_generated/server";
 import { components, internal } from "../_generated/api";
 import { supportAgent } from "../system/ai/agents/supportAgents";
 import { paginationOptsValidator } from "convex/server";
-import { ResolveConversation } from "../system/ai/tools/resolveConversation";
-import { EscalateConversation } from "../system/ai/tools/escalateConversation";
+
 import { saveMessage } from "@convex-dev/agent";
+import { resolveConversation } from "../system/ai/tools/resolveConversation";
+import { escalateConversation } from "../system/ai/tools/escalateConversation";
+import { search } from "../system/ai/tools/search";
 
 export const createMessage = action({
   args: {
@@ -61,7 +63,7 @@ export const createMessage = action({
         },
         {
           prompt: args.prompt,
-          tools: { ResolveConversation, EscalateConversation },
+          tools: { resolveConversation, escalateConversation, search },
         }
       );
     } else {
