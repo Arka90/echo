@@ -81,6 +81,7 @@ const VapiPluginForm = ({
         },
       });
       toast.success("Vapi connected successfully");
+      form.reset();
       setOpen(false);
     } catch (error) {
       console.error(error);
