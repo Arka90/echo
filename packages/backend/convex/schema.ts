@@ -4,6 +4,14 @@ import { v } from "convex/values";
 export default defineSchema({
   // Define your schema here
 
+  plugins: defineTable({
+    organizationId: v.string(),
+    service: v.union(v.literal("vapi")),
+    secretName: v.string(),
+  })
+    .index("by_organization_id_and_service", ["organizationId", "service"])
+    .index("by_organization_id", ["organizationId"]),
+
   conversations: defineTable({
     threadId: v.string(),
     organizationId: v.string(),
