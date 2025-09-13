@@ -158,22 +158,24 @@ export const ConversationIdView = ({
             onLoadMore={handleLoadMore}
             ref={topElementRef}
           />
-          {toUIMessages(messages.results ?? [])?.map((message) => (
-            <AIMessage
-              from={message.role === "user" ? "assistant" : "user"}
-              key={message.id}
-            >
-              <AIMessageContent>
-                <AIResponse>{message.content}</AIResponse>
-              </AIMessageContent>
-              {message.role === "user" && (
-                <DicebearAvatar
-                  seed={conversation?.contactSessionId ?? "user"}
-                  size={32}
-                />
-              )}
-            </AIMessage>
-          ))}
+          {toUIMessages(messages.results ?? [])?.map((message) => {
+            return (
+              <AIMessage
+                from={message.role === "user" ? "assistant" : "user"}
+                key={message.id}
+              >
+                <AIMessageContent>
+                  <AIResponse>{message.content}</AIResponse>
+                </AIMessageContent>
+                {message.role === "user" && (
+                  <DicebearAvatar
+                    seed={conversation?.contactSessionId ?? "user"}
+                    size={32}
+                  />
+                )}
+              </AIMessage>
+            );
+          })}
         </AIConversationContent>
         <AIConversationScrollButton />
       </AIConversation>
