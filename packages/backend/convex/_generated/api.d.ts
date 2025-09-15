@@ -21,6 +21,7 @@ import type * as public_contactSessions from "../public/contactSessions.js";
 import type * as public_conversations from "../public/conversations.js";
 import type * as public_messages from "../public/messages.js";
 import type * as public_organizations from "../public/organizations.js";
+import type * as public_widgetSettings from "../public/widgetSettings.js";
 import type * as system_ai_agents_supportAgents from "../system/ai/agents/supportAgents.js";
 import type * as system_ai_contants from "../system/ai/contants.js";
 import type * as system_ai_rag from "../system/ai/rag.js";
@@ -61,6 +62,7 @@ declare const fullApi: ApiFromModules<{
   "public/conversations": typeof public_conversations;
   "public/messages": typeof public_messages;
   "public/organizations": typeof public_organizations;
+  "public/widgetSettings": typeof public_widgetSettings;
   "system/ai/agents/supportAgents": typeof system_ai_agents_supportAgents;
   "system/ai/contants": typeof system_ai_contants;
   "system/ai/rag": typeof system_ai_rag;
