@@ -170,7 +170,7 @@ export const ContactPanel = () => {
             size={42}
           />
           <div className="flex-1 overflow-hidden">
-            <div className="flex items-center gap-x-2">
+            <div className="flex flex-col items-start gap-x-2">
               <h4 className="line-clamp-1">{contactSession.name}</h4>
               <p className="line-clamp-1 text-muted-foreground text-sm">
                 {contactSession.email}
