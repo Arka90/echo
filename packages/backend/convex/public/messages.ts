@@ -51,9 +51,20 @@ export const createMessage = action({
       });
     }
 
-    // TODO: Implement subscription plan check here.
+    // Refresh the contact session to extend its validity.
+    await ctx.runMutation(internal.system.contactSessions.refresh, {
+      contactSessionId: args.contactSessionId,
+    });
 
-    const shouldTriggerAgent = conversation.status === "unresolved";
+    const subscription = await ctx.runQuery(
+      internal.system.subscription.getByOrganizationId,
+      {
+        organizationId: conversation.organizationId,
+      }
+    );
+
+    const shouldTriggerAgent =
+      conversation.status === "unresolved" && subscription?.status === "active";
 
     if (shouldTriggerAgent) {
       await supportAgent.generateText(

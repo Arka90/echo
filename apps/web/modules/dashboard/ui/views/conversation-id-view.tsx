@@ -35,6 +35,7 @@ import { ConversationStatusButton } from "../components/conversation-status-butt
 import { useState } from "react";
 import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
 import { useInfiniteScroll } from "@workspace/ui/hooks/use-infinite-scroll";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   message: z.string().min(1, "Message is required"),
@@ -126,6 +127,7 @@ export const ConversationIdView = ({
       const enhancedText = await enhanceResponse({ prompt: currentValue });
       form.setValue("message", enhancedText);
     } catch (error) {
+      toast.error("Something went wrong ");
       console.error("Enhance response error:", error);
     } finally {
       setEnhancing(false);
