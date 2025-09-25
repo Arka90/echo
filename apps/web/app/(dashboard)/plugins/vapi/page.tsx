@@ -1,5 +1,5 @@
 import { PremiumFeatureOverlay } from "@/modules/billing/ui/components/premium-feature-overlay";
-import { VapiView } from "@/modules/modules/plugins/ui/view/vapi-view";
+import { VapiView } from "@/modules/plugins/ui/view/vapi-view";
 import { Protect } from "@clerk/nextjs";
 
 export default function VapiPage() {

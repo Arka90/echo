@@ -3,7 +3,7 @@ import { UseFormReturn } from "react-hook-form";
 import {
   useVapiAssistants,
   useVapiPhoneNumbers,
-} from "@/modules/modules/plugins/hooks/use-vapi-data";
+} from "@/modules/plugins/hooks/use-vapi-data";
 import {
   Form,
   FormControl,
