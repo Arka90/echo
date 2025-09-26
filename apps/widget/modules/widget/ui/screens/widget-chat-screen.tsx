@@ -6,7 +6,11 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useThreadMessages, toUIMessages } from "@convex-dev/agent/react";
+import {
+  useThreadMessages,
+  toUIMessages,
+  UIMessage,
+} from "@convex-dev/agent/react";
 import { Button } from "@workspace/ui/components/button";
 import { WidgetHeader } from "../components/widget-header";
 import { ArrowLeft, MenuIcon } from "lucide-react";
@@ -123,6 +127,10 @@ export const WidgetChatScreen = () => {
     setScreen("selection");
   };
 
+  const uiMessage = toUIMessages(messages?.results ?? []) as Array<
+    UIMessage & { content: string }
+  >;
+
   return (
     <>
       <WidgetHeader className="flex items-center justify-between">
@@ -144,7 +152,7 @@ export const WidgetChatScreen = () => {
             onLoadMore={handleLoadMore}
             ref={topElementRef}
           />
-          {toUIMessages(messages?.results ?? [])?.map((message) => {
+          {uiMessage?.map((message) => {
             return (
               <AIMessage
                 from={message.role === "user" ? "user" : "assistant"}

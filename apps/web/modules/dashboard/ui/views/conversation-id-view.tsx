@@ -30,7 +30,11 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DicebearAvatar } from "@workspace/ui/components/dicebear-avatar";
-import { toUIMessages, useThreadMessages } from "@convex-dev/agent/react";
+import {
+  toUIMessages,
+  UIMessage,
+  useThreadMessages,
+} from "@convex-dev/agent/react";
 import { ConversationStatusButton } from "../components/conversation-status-button";
 import { useState } from "react";
 import { InfiniteScrollTrigger } from "@workspace/ui/components/infinite-scroll-trigger";
@@ -138,6 +142,10 @@ export const ConversationIdView = ({
     return <ConversationIdViewLoading />;
   }
 
+  const uiMessage = toUIMessages(messages?.results ?? []) as Array<
+    UIMessage & { content: string }
+  >;
+
   return (
     <div className="flex h-full flex-col bg-muted">
       <header className="flex items-center justify-between border-b bg-background p-2.5">
@@ -160,7 +168,7 @@ export const ConversationIdView = ({
             onLoadMore={handleLoadMore}
             ref={topElementRef}
           />
-          {toUIMessages(messages.results ?? [])?.map((message) => {
+          {uiMessage?.map((message) => {
             return (
               <AIMessage
                 from={message.role === "user" ? "assistant" : "user"}
