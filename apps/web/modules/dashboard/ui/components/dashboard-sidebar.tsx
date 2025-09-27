@@ -10,7 +10,6 @@ import {
   PaletteIcon,
 } from "lucide-react";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -100,6 +99,7 @@ export const DashboardSidebar = () => {
                 }}
                 hidePersonal
                 skipInvitationScreen
+                afterSelectOrganizationUrl="/conversations"
               />
             </SidebarMenuButton>
           </SidebarMenuItem>

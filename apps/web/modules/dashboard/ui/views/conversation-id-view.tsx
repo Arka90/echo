@@ -45,6 +45,14 @@ const formSchema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
+const ConversationSkeleton = () => {
+  return (
+    <div className="flex h-full items-center justify-center bg-muted">
+      <div className="h-8 w-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+};
+
 export const ConversationIdView = ({
   conversationId,
 }: {
@@ -139,7 +147,7 @@ export const ConversationIdView = ({
   };
 
   if (conversation === undefined || messages.status === "LoadingFirstPage") {
-    return <ConversationIdViewLoading />;
+    return <ConversationSkeleton />;
   }
 
   const uiMessage = toUIMessages(messages?.results ?? []) as Array<
@@ -245,51 +253,6 @@ export const ConversationIdView = ({
             </AIInputToolbar>
           </AIInput>
         </Form>
-      </div>
-    </div>
-  );
-};
-
-export const ConversationIdViewLoading = () => {
-  return (
-    <div className="flex h-full flex-col bg-muted">
-      <header className="flex items-center justify-between border-b bg-background p-2.5">
-        <Button variant="ghost" size="sm" disabled>
-          <MoreHorizontalIcon className="opacity-20" />
-        </Button>
-        <div className="h-8 w-24 rounded-md bg-gray-300 animate-pulse" />
-      </header>
-      <AIConversation className="max-h-[calc(100vh-180px)]">
-        <AIConversationContent>
-          {[...Array(5)].map((_, i) => (
-            <AIMessage from={i % 2 === 0 ? "assistant" : "user"} key={i}>
-              <AIMessageContent>
-                <div className="space-y-2 min-w-0 flex-1">
-                  <div className="h-4 w-full max-w-xs bg-gray-300 rounded animate-pulse" />
-                  <div className="h-4 w-full max-w-sm bg-gray-300 rounded animate-pulse" />
-                  {i % 3 === 0 && (
-                    <div className="h-4 w-full max-w-md bg-gray-300 rounded animate-pulse" />
-                  )}
-                </div>
-              </AIMessageContent>
-              {i % 2 !== 0 && (
-                <div className="h-8 w-8 rounded-full bg-gray-300 animate-pulse" />
-              )}
-            </AIMessage>
-          ))}
-        </AIConversationContent>
-        <AIConversationScrollButton />
-      </AIConversation>
-      <div className="p-2">
-        <div className="space-y-2">
-          <div className="min-h-[80px] w-full bg-gray-300 rounded-md animate-pulse" />
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 bg-gray-300 rounded animate-pulse" />
-            </div>
-            <div className="h-8 w-8 bg-gray-300 rounded animate-pulse" />
-          </div>
-        </div>
       </div>
     </div>
   );
